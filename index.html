@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Randomly get computer's choice
+        function getComputerChoice() {
+            let choice = Math.floor(Math.random() * 3);
+            switch (choice) {
+                case 0:
+                    return "rock";
+                case 1:
+                    return "paper";
+                default:
+                    return "scissors"  ;      
+            }
+        }
+
+        // Get human's choice
+        function getHumanChoice (){
+            let humanChoice = prompt("What's your choice? \nRock, Paper or Scissors").toLowerCase();
+
+            // Only return if choice is valid
+            if (humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors") {
+                return humanChoice;
+            }
+        }
+        
+        // Create variable to follow scores of game
+        let humanScore = computerScore = 0;
+
+        // Decide winner of a round based on choices
+        function playRound() {
+            const humanChoice = getHumanChoice();
+            const computerChoice = getComputerChoice();
+
+            // If human's choice is invalid, human lose this round.
+            if (humanChoice === undefined)
+            {
+                console.log("Your choice is invalid. Computer wins.");
+                computerScore++;
+                return;
+            }
+
+            // If human's and compute's choice is the same, they tie.
+            if (humanChoice === computerChoice) {
+                console.log("Tie.");
+                return;
+            }
+
+            // If choices are different, decide winner of this round and increase winner's score.
+            if (humanChoice === "rock") {
+                if (computerChoice === "scissors") {
+                    console.log("You win. Rock beats Scissors.");
+                    humanScore++;
+                }
+                else {
+                    console.log("You lose. Paper beats Rock.");
+                    computerScore++;
+                }
+            }
+
+            else if (humanChoice === "paper") {
+                if (computerChoice === "rock") {
+                    console.log("You win. Paper beats Rock.");
+                    humanScore++;
+                }
+                else {
+                    console.log("You lose. Scissors beat Paper.");
+                    computerScore++;
+                }
+            }
+
+            else {
+                if (computerChoice === "paper") {
+                    console.log("You win. Scissors beat Paper.");
+                    humanScore++;
+                }
+                else {
+                    console.log("You lose. Rock beats Scissors.");
+                    computerScore++;
+                }
+            }
+
+        }
+
+        function playGame (){
+            // Iterate over 5 rounds.
+            for (let i = 0; i < 5; i++)
+            {
+                playRound();
+            }
+            
+            // Decide winner.
+            if (humanScore > computerScore) {
+                console.log("You win the game.");
+            }
+            else if (humanScore < computerScore) {
+                console.log("You lose. Let's try the next game.");
+            }
+            else {
+                console.log("Tie.");
+            }
+        }
+
+        playGame();
+    </script>
+</body>
+</html>
