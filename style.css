@@ -1,0 +1,12 @@
+button {
+    background-color: #3882f6;
+    color: white;
+    border-radius: 8px;
+    border-width: 0;
+    padding: 8px;
+    margin: 12px;
+}
+
+#scores {
+    border: 2px solid black;
+}
